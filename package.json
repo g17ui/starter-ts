@@ -13,15 +13,12 @@
   "keywords": [],
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "typesVersions": {
     "*": {
       "*": [
@@ -34,31 +31,34 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
-    "lint": "eslint .",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "lint": "eslint",
     "prepublishOnly": "nr build",
-    "release": "bumpp && npm publish",
-    "start": "esno src/index.ts",
+    "release": "bumpp",
+    "start": "tsx src/index.ts",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.16.1",
-    "@antfu/ni": "^25.0.0",
-    "@antfu/utils": "^9.2.0",
-    "@types/node": "^24.0.3",
-    "bumpp": "^10.2.0",
-    "eslint": "^9.29.0",
-    "eslint-plugin-format": "^1.0.1",
-    "esno": "^4.8.0",
-    "lint-staged": "^16.1.2",
-    "simple-git-hooks": "^2.13.0",
-    "typescript": "^5.8.3",
-    "unbuild": "^3.5.0",
-    "vite": "^6.3.5",
-    "vitest": "^3.2.4"
+    "@antfu/eslint-config": "catalog:cli",
+    "@antfu/ni": "catalog:cli",
+    "@antfu/utils": "catalog:inlined",
+    "@types/node": "catalog:types",
+    "bumpp": "catalog:cli",
+    "eslint": "catalog:cli",
+    "lint-staged": "catalog:cli",
+    "publint": "catalog:cli",
+    "simple-git-hooks": "catalog:cli",
+    "tinyexec": "catalog:testing",
+    "tsdown": "catalog:cli",
+    "tsx": "catalog:cli",
+    "typescript": "catalog:cli",
+    "vite": "catalog:cli",
+    "vitest": "catalog:testing",
+    "vitest-package-exports": "catalog:testing",
+    "yaml": "catalog:testing"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
